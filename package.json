@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@napi-rs/canvas": "^0.1.52",
     "discord.js": "^14.14.1",
     "puppeteer": "^22.7.1"
   }

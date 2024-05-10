@@ -1,7 +1,9 @@
 const puppeteer = require("puppeteer")
 
+//LOOK INTO OPTIMISING PUPPETEER REQUESTS
+
 async function fetchExp(ignList) {
-  const batchSize = 5
+  const batchSize = 1
   const batches = []
   for (let i = 0; i < ignList.length; i += batchSize) {
     batches.push(ignList.slice(i, i + batchSize))
@@ -14,7 +16,7 @@ async function fetchExp(ignList) {
       batch.map((player) => getRates(player))
     )
     playerListWithData.push(...batchResults)
-    await delay(10000)
+    await delay(400)
   }
 
   const sortedResult = playerListWithData.sort((a, b) => {
@@ -49,11 +51,11 @@ async function getRates(ign) {
   const rates = await page.evaluate(() => {
     const name = document.querySelector(".card-title").innerText
     const expValue = document.querySelector(".char-exp-cell")
-
+    const image = document.querySelector(".card-img-top").src
     const description = expValue.innerText.split("\n")[0]
     const number = expValue.querySelector(".char-stat-right").innerText
 
-    return { name, description, number }
+    return { name, description, number, image }
   })
 
   // Display the page data
