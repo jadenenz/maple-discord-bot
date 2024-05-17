@@ -12,6 +12,9 @@
   "dependencies": {
     "@napi-rs/canvas": "^0.1.52",
     "discord.js": "^14.14.1",
+    "dotenv": "^16.4.5",
+    "mongodb": "^6.6.1",
+    "mongoose": "^8.3.5",
     "puppeteer": "^22.7.1"
   }
 }
