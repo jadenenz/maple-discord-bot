@@ -9,6 +9,7 @@ const clientOptions = {
 }
 
 module.exports = {
+  cooldown: 0,
   data: new SlashCommandBuilder()
     .setName("remove")
     .setDescription("Removes an ign from the leaderboard.")

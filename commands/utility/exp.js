@@ -4,6 +4,7 @@ const { request } = require("undici")
 const Canvas = require("@napi-rs/canvas")
 
 module.exports = {
+  cooldown: 30,
   data: new SlashCommandBuilder()
     .setName("exp")
     .setDescription("Fetches exp for the set list of IGNs"),

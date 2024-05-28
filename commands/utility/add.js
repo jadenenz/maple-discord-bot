@@ -14,6 +14,7 @@ const clientOptions = {
 }
 
 module.exports = {
+  cooldown: 0,
   data: new SlashCommandBuilder()
     .setName("add")
     .setDescription("Adds an ign to the leaderboard")
