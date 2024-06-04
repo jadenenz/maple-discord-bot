@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, AttachmentBuilder } = require("discord.js")
-const { fetchExp } = require("./../../helpers/fetchExp")
+const { fetchExp } = require("../../helpers/fetchExp")
 const { request } = require("undici")
 const Canvas = require("@napi-rs/canvas")
 
@@ -7,7 +7,19 @@ module.exports = {
   cooldown: 30,
   data: new SlashCommandBuilder()
     .setName("exp")
-    .setDescription("Fetches exp for the set list of IGNs"),
+    .setDescription("Fetches exp for the set list of IGNs")
+    .addNumberOption((option) =>
+      option
+        .setName("duration")
+        .setDescription(
+          "The duration of time to measure exp. Default is 7 days."
+        )
+        .setRequired(false)
+        .addChoices(
+          { name: "7 Days", value: 7 },
+          { name: "14 Days", value: 14 }
+        )
+    ),
   async execute(interaction) {
     try {
       await interaction.deferReply()
@@ -111,6 +123,7 @@ module.exports = {
 
       await interaction.editReply({ embeds: [expEmbed], files: [attachment] })
     } catch (error) {
+      await interaction.editReply("Failed to fetch exp.")
       console.error(error)
     }
   },
